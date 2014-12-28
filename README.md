@@ -1,4 +1,6 @@
 begborrowshare-php
 ==================
 
-Beg, Borrow, and Share Web App (in PHP)
+Beg, Borrow, Share web app in PHP
+
+

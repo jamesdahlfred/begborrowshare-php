@@ -1,0 +1,19 @@
+{
+  "name": "begborrowshare",
+  "title": "Beg, Borrow, or Share",
+  "dependencies": {
+    "angular": "~1",
+    "angular-animate": "~1",
+    "angular-cookies": "~1",
+    "angular-messages": "~1",
+    "angular-mocks": "~1",
+    "angular-resource": "~1",
+    "angular-route": "~1",
+    "angular-sanitize": "~1",
+    "angular-touch": "~1",
+    "bootstrap": "~3",
+    "jquery": "~1.9",
+    "modernizr": "~2.8",
+    "angular-cache-buster": "~0.4.3"
+  }
+}
