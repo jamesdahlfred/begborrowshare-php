@@ -27,7 +27,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Beg, Borrow, or Share</a>
+      <a class="navbar-brand" href="#">Beg, Borrow, Share</a>
     </div>
     <div class="collapse navbar-collapse" id="navbar">
       <form class="navbar-form navbar-right" role="search" name="navbarSearch" ng-controller="searchController" novalidate ng-submit="search()">
@@ -88,11 +88,6 @@
     </div>
 
     <div ng-view class="reveal-animation"></div>
-
-    <!-- Site footer -->
-    <div class="footer">
-      <p>© Company 2014</p>
-    </div>
 
   </div>
   <script src="//use.typekit.net/gkh0vdb.js"></script>

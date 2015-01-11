@@ -37,40 +37,21 @@ class AccountController extends \BaseController {
 	 */
 	public function store()
 	{
-		if (Auth::check()) {
-			$code = Code::generate();
-			DB::insert('INSERT INTO accounts (
-        privileges,
-        name,
-        username,
-        password,
-        location,
-        phone,
-        email,
-        social,
-        last_ip,
-          created_at,
-          updated_at,
-          deleted_at
-			) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', array(
-        json_encode(Input::get('privileges')), 
-				Input::get('list'),
-        Input::get('allow_plusone'),
-        Input::get('allow_children'),
-        json_encode(Input::get('guest')), 
-				json_encode(Input::get('plusone')), 
-				Input::get('children'),
-				Input::get('email'),
-				Input::get('address'),
-				Input::get('phone'),
-				Input::get('appetizer'),
-				Input::get('note'),
-				Input::get('accomodations'),
-				new DateTime,
-				new DateTime
-			));
-			return Response::json();
-		}
+		$account = new Account;
+
+    $account->name = Input::get('name');
+    $account->privileges = json_encode(Input::get('privileges'));
+    $account->username = Input::get('username');
+		$account->password = Hash::make(Input::get('password'));
+    $account->email = Input::get('email');
+    $account->last_ip = $_SERVER['REMOTE_ADDR'];
+ 
+    if(!$account->save())
+    {
+      return Response::json($account->errors()->all(), 500);
+    } else {
+     	return Response::json();
+   	}
 	}
 
 	/**
