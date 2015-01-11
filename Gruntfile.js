@@ -27,6 +27,7 @@ module.exports = function (grunt) {
           'bower_modules/modernizr/modernizr.js',
           'bower_modules/jquery/jquery.js',
           'bower_modules/bootstrap/dist/js/bootstrap.js',
+          'bower_modules/typeahead.js/dist/typeahead.bundle.js',
           'bower_modules/angular/angular.js',
           'bower_modules/angular-route/angular-route.js',
           'bower_modules/angular-resource/angular-resource.js',
@@ -56,11 +57,8 @@ module.exports = function (grunt) {
         js: 'public/assets/js/lib.js',
         jsOutputFile: 'public/assets/js/lib.min.js',
         maxBuffer: 500,
+        noreport: true,
         options: {
-          // externs: [
-          //   '<%= externs %>/angular-1.2.js',
-          //   '<%= externs %>/jquery-1.9.js'
-          // ],
           angular_pass: true,
           compilation_level: 'simple',
           warning_level: 'quiet',
@@ -75,9 +73,10 @@ module.exports = function (grunt) {
         js: 'public/assets/js/app.js',
         jsOutputFile: 'public/assets/js/app.min.js',
         maxBuffer: 500,
+        noreport: true,
         options: {
           externs: [
-            '<%= externs %>/angular-1.2.js',
+            '<%= externs %>/angular-1.3.js',
             '<%= externs %>/jquery-1.9.js'
           ],
           angular_pass: true,
@@ -201,7 +200,7 @@ module.exports = function (grunt) {
         }
       },
       tests: {
-        files: ['app/controllers/*.php', 'app/models/*.php'],
+        files: ['app/models/*.php', 'app/controllers/*.php'],
         tasks: ['phpunit']
       }
     } // end watch

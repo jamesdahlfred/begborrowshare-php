@@ -14,8 +14,8 @@ app.config(["$routeProvider", "$httpProvider", function($routeProvider, $httpPro
     .when("/login", {
       templateUrl: "/assets/partials/login.html"
     })
-    .when("/search", {
-      templateUrl: "/assets/partials/search.html"
+    .when("/results/:query", {
+      templateUrl: "/assets/partials/results.html"
     })
     .when("/", {
       templateUrl: "/assets/partials/home.html"

@@ -14,6 +14,7 @@
     "bootstrap": "~3",
     "jquery": "~1.9",
     "modernizr": "~2.8",
-    "angular-cache-buster": "~0.4.3"
+    "angular-cache-buster": "~0.4.3",
+    "typeahead.js": "~0.10.5"
   }
 }

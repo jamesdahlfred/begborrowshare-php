@@ -22,24 +22,24 @@ Route::get('/', function()
     return View::make('home');
 });
 
-Route::get('/search', function()
+Route::get('/results', function()
 {
-    return View::make('search');
+    return View::make('results');
 });
 
 Route::get('/account', function()
 {
     $account = new Account;
-    $account->privileges = '';
-    $account->name = 'Fifth User';
-    $account->username = 'fifthuser';
-    $account->password = 'fifth_password';
-    $account->password_confirmation = 'fifth_password';
-    $account->location = '';
-    $account->phone = '';
-    $account->email = 'fifthuser@example.com';
-    $account->social = '';
-    $account->last_ip = $_SERVER['REMOTE_ADDR'];
+    // $account->privileges = '';
+    // $account->name = 'Fifth User';
+    // $account->username = 'fifthuser';
+    // $account->password = 'fifth_password';
+    // $account->password_confirmation = 'fifth_password';
+    // $account->location = '';
+    // $account->phone = '';
+    // $account->email = 'fifthuser@example.com';
+    // $account->social = '';
+    // $account->last_ip = $_SERVER['REMOTE_ADDR'];
 
     if (!$account->save())
     {
@@ -56,6 +56,9 @@ Route::get('/account', function()
 |--------------------------------------------------------------------------
 */
 
+Route::get('/search'        , 'SearchController@index');
+Route::get('/search/{query}', 'SearchController@show');
+
 Route::get('/beg'     , 'BegController@index');
 Route::get('/beg/{id}', 'BegController@show');
 Route::put('/beg/{id}', 'BegController@update');
@@ -68,7 +71,7 @@ Route::get('/share'     , 'ShareController@index');
 Route::get('/share/{id}', 'ShareController@show');
 Route::put('/share/{id}', 'ShareController@update');
 
-Route::get('accounts', 'AccountController@getIndex');
+// Route::get('/accounts', 'AccountController@getIndex');
 Route::get('/accounts', function()
 {
     $accounts = Account::all();
