@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="/assets/ico/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
   <title>Beg, Borrow, or Share</title>
   <link rel="stylesheet" href="/assets/css/app.css" type="text/css" media="screen" title="CSS for Screens" charset="utf-8">
   <script src="/assets/js/lib.js" type="text/javascript" charset="utf-8"></script>

@@ -28,13 +28,14 @@ class SearchController extends \BaseController {
 	 */
 	public function show($query = null)
 	{
-		$results = DB::table('things')->select('title', 'id')->where('title', 'LIKE', '%' . $query . '%')->take('10')->get();
+		$results = DB::table('things')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take('10')->get();
 		$datums = array();
 		foreach ($results as $i => $j) {
 			$datums[] = array(
-				'val'  => $j->title,
-				'id'   => $j->id,
-				'type' => 'thing'
+				'id'   				=> $j->id,
+				'val'  				=> $j->title,
+				'description' => $j->description,
+				'type' 				=> 'thing'
 			);
 		}
 		return Response::json($datums);

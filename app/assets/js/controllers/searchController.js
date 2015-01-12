@@ -6,7 +6,7 @@ app.controller("searchController", ["$scope", "$location", "$routeParams", "sear
   $scope.search = function() {
     searchService.search($scope.query).success(function(data) {
       $location.path("/results/" + $scope.query);
-      $scope.results = data;
+      // $scope.results = data;
     });
   };
 
