@@ -1,6 +1,6 @@
 app.controller("searchController", ["$scope", "$location", "$routeParams", "searchService", function($scope, $location, $routeParams, searchService) {
   
-  $scope.query = $routeParams['query'];
+  $scope.query = $routeParams["query"];
   $scope.results = [];
   
   $scope.search = function() {

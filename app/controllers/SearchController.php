@@ -28,14 +28,29 @@ class SearchController extends \BaseController {
 	 */
 	public function show($query = null)
 	{
-		$results = DB::table('things')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take('10')->get();
+		$begs = DB::table('begs')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take('100')->get();
+		$shares = DB::table('shares')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take('100')->get();
+		$things = DB::table('things')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take('100')->get();
+
+		foreach ($begs as &$value) {
+		    $value->type = 'beg';
+		}
+		foreach ($shares as &$value) {
+		    $value->type = 'borrow';
+		}
+		foreach ($things as &$value) {
+		    $value->type = 'thing';
+		}
+
+		$results = array_merge($things, $begs, $shares);
+		// $results = sort($results);
 		$datums = array();
 		foreach ($results as $i => $j) {
 			$datums[] = array(
 				'id'   				=> $j->id,
 				'val'  				=> $j->title,
 				'description' => $j->description,
-				'type' 				=> 'thing'
+				'type' 				=> $j->type
 			);
 		}
 		return Response::json($datums);

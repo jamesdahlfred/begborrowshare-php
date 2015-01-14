@@ -5,11 +5,12 @@
   			<tr>
   				<th>Type</th>
   				<th>Title</th>
+          <th>Description</th>
 				</tr>
   		</thead>
   		<tbody>
   			<tr ng-repeat="item in results">
-  				<td>{{item.type}}</td>
+  				<td>{{item.type | toTitleCase}}</td>
   				<td>{{item.val}}</td>
           <td>{{item.description}}</td>
   			</tr>
