@@ -1,4 +1,4 @@
-var app = app || angular.module("begborrowshare", ["ngSanitize", "ngResource", "ngRoute", "ngAnimate", "ngCookies", "ngTouch"]);
+var app = app || angular.module("begborrowshare", ["ngSanitize", "ngResource", "ngRoute", "ngAnimate", "ngCookies", "ngTouch", "ui.utils"]);
 
 app.config(["$routeProvider", "$httpProvider", function($routeProvider, $httpProvider) {
   $routeProvider

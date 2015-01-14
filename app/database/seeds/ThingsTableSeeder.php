@@ -7,13 +7,14 @@ class ThingsTableSeeder extends Seeder {
         DB::table('things')->delete();
 
         $faker = Faker\Factory::create('en_US');
-        $faker->seed(9141705);
+        $faker->seed(8675309);
 
         // Add one to include admin
         for ($i = 0; $i < 100; $i++) {
             $num_things = mt_rand(0, 25);
             for ($j = 0; $j < $num_things; $j++) {
                 $title = $faker->sentence(mt_rand(1, 5));
+                $created_at = $faker->dateTimeThisYear;
                 Thing::create(array(
                     'owner' => $i + 2,
                     'possessor' => $i + 2,
@@ -29,8 +30,8 @@ class ThingsTableSeeder extends Seeder {
                     'tags' => json_encode($faker->words(mt_rand(0, 5))),
                     'specs' => '',
                     'images' => '',
-                    'created_at' => $faker->dateTimeThisYear,
-                    'updated_at' => $faker->dateTimeBetween($faker->dateTimeThisYear, new DateTime())
+                    'created_at' => $created_at,
+                    'updated_at' => $faker->dateTimeBetween($created_at, new DateTime())
                 ));
             }
         }

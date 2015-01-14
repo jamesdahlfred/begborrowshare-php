@@ -16,6 +16,7 @@
     "modernizr": "~2.8",
     "angular-cache-buster": "~0.4",
     "typeahead.js": "~0.10",
-    "angular-translate": "~2.5"
+    "angular-translate": "~2.5",
+    "angular-ui-utils": "~0.2"
   }
 }

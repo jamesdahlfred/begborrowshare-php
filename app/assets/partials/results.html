@@ -3,15 +3,15 @@
   	<table class="table table-hover">
   		<thead>
   			<tr>
-  				<th>Type</th>
-  				<th>Title</th>
-          <th>Description</th>
+  				<th class="col-lg-1 sortable" ng-click="sortBy('type')">Type&nbsp;<span class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': sort.column=='type', 'glyphicon-sort-by-alphabet-alt': (sort.column=='type' && sort.descending)}"></span></th>
+  				<th class="col-lg-3 sortable" ng-click="sortBy('val')">Title&nbsp;<span class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': sort.column=='val', 'glyphicon-sort-by-alphabet-alt': (sort.column=='val' && sort.descending)}"></span></th>
+          <th class="col-lg-8">Description</th>
 				</tr>
   		</thead>
   		<tbody>
-  			<tr ng-repeat="item in results">
+  			<tr ng-repeat="item in results|orderBy:sort.column:sort.descending">
   				<td>{{item.type | toTitleCase}}</td>
-  				<td>{{item.val}}</td>
+  				<td ng-bind-html="item.val | highlight:query"></td>
           <td>{{item.description}}</td>
   			</tr>
   		</tbody>

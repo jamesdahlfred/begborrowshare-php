@@ -65,6 +65,7 @@ class Beg extends Ardent {
     // $table->boolean('private');
     // $table->string('title');
     // $table->text('description');
+    // $table->string('categories')->nullable();
     // $table->string('location');
     // $table->dateTime('fulfilled_at');
     // $table->dateTime('expires_at');

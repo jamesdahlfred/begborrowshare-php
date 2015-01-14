@@ -27,10 +27,11 @@ class AccountsTableSeeder extends Seeder {
 
         // normal accounts
         $faker = Faker\Factory::create('en_US');
-        $faker->seed(4735078);
+        $faker->seed(8675309);
 
         for ($i = 1; $i < 100; $i++) {
             $username = $faker->userName;
+            $created_at = $faker->dateTimeThisYear;
             Account::create(array(
                 'privileges' => json_encode(array(
                     'admin' => false
@@ -52,8 +53,8 @@ class AccountsTableSeeder extends Seeder {
                     'twitter' => '@' . $username,
                 )),
                 'last_ip' => $faker->ipv4, // $_SERVER['REMOTE_ADDR']
-                'created_at' => $faker->dateTimeThisYear,
-                'updated_at' => $faker->dateTimeBetween($faker->dateTimeThisYear, new DateTime())
+                'created_at' => $created_at,
+                'updated_at' => $faker->dateTimeBetween($created_at, new DateTime())
             ));
         }
     } 

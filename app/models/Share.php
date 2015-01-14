@@ -65,6 +65,7 @@ class Share extends Ardent {
     // $table->boolean('private');
     // $table->string('title');
     // $table->text('description');
+    // $table->string('categories')->nullable();
     // $table->dateTime('claimed_at');
     // $table->dateTime('expires_at');
     // // $table->dateTime('created_at');
