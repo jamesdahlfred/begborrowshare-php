@@ -59,6 +59,8 @@ Route::get('/account', function()
 Route::get('/search'        , 'SearchController@index');
 Route::get('/search/{query}', 'SearchController@show');
 
+Route::get('/begs/latest'   , 'BegController@latest');
+
 Route::get('/beg'     , 'BegController@index');
 Route::get('/beg/{id}', 'BegController@show');
 Route::put('/beg/{id}', 'BegController@update');

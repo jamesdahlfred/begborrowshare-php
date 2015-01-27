@@ -26,17 +26,18 @@ class SearchController extends \BaseController {
 	 * @param  string  $query
 	 * @return Response
 	 */
-	public function show($query = null)
+	public function show($query = null, $page = 0, $limit = 100)
 	{
-		$begs = DB::table('begs')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take('100')->get();
-		$shares = DB::table('shares')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take('100')->get();
-		$things = DB::table('things')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take('100')->get();
+		// TODO: combine this into one limited query for pagination, and one unlimited count
+		$begs = DB::table('begs')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take($limit)->get();
+		$shares = DB::table('shares')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take($limit)->get();
+		$things = DB::table('things')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take($limit)->get();
 
 		foreach ($begs as &$value) {
 		    $value->type = 'beg';
 		}
 		foreach ($shares as &$value) {
-		    $value->type = 'borrow';
+		    $value->type = 'share';
 		}
 		foreach ($things as &$value) {
 		    $value->type = 'thing';
@@ -47,10 +48,10 @@ class SearchController extends \BaseController {
 		$datums = array();
 		foreach ($results as $i => $j) {
 			$datums[] = array(
-				'id'   				=> $j->id,
-				'val'  				=> $j->title,
+				'id' => $j->id,
+				'title' => $j->title,
 				'description' => $j->description,
-				'type' 				=> $j->type
+				'type' => $j->type
 			);
 		}
 		return Response::json($datums);

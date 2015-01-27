@@ -9,6 +9,9 @@ app.service("searchService", ["$http", "$sanitize", "CSRF_TOKEN", "flashService"
   return {
     search: function(query) {
       return $http.get("/search/" + $sanitize(query));
+    },
+    latestBegs: function() {
+      return $http.get("/begs/latest");
     }
   };
 }]);

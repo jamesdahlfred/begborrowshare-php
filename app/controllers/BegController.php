@@ -2,14 +2,26 @@
 
 class BegController extends \BaseController {
 
+/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index($query = null)
+	{
+		$results = DB::table('begs')->select('id', 'title', 'description')->where('title', 'LIKE', '%' . $query . '%')->take('100')->get();
+	}
+
+
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function latest()
 	{
-		//
+		$results = DB::table('begs')->select('id', 'title', 'description', 'created_at')->orderBy('created_at', 'desc')->take('100')->get();
+		return Response::json($results);
 	}
 
 

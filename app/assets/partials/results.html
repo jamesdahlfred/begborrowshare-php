@@ -1,20 +1,22 @@
-<div class="row">
-  <div class="col-lg-12" ng-controller="resultsController">
-  	<table class="table table-hover">
-  		<thead>
-  			<tr>
-  				<th class="col-lg-1 sortable" ng-click="sortBy('type')">Type&nbsp;<span class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': sort.column=='type', 'glyphicon-sort-by-alphabet-alt': (sort.column=='type' && sort.descending)}"></span></th>
-  				<th class="col-lg-3 sortable" ng-click="sortBy('val')">Title&nbsp;<span class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': sort.column=='val', 'glyphicon-sort-by-alphabet-alt': (sort.column=='val' && sort.descending)}"></span></th>
-          <th class="col-lg-8">Description</th>
-				</tr>
-  		</thead>
-  		<tbody>
-  			<tr ng-repeat="item in results|orderBy:sort.column:sort.descending">
-  				<td>{{item.type | toTitleCase}}</td>
-  				<td ng-bind-html="item.val | highlight:query"></td>
-          <td>{{item.description}}</td>
-  			</tr>
-  		</tbody>
-  	</table>
+<div ng-controller="resultsController">
+  <div class="row">
+    <div class="col-lg-12">
+      Sort by
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default btn-sm sortable" ng-click="sortBy('title')">Title&nbsp;<span class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': sort.column=='title', 'glyphicon-sort-by-alphabet-alt': (sort.column=='title' && sort.descending)}"></span></button>
+        <button type="button" class="btn btn-default btn-sm sortable" ng-click="sortBy('type')">Type&nbsp;<span class="glyphicon" ng-class="{'glyphicon-sort-by-alphabet': sort.column=='type', 'glyphicon-sort-by-alphabet-alt': (sort.column=='type' && sort.descending)}"></span></button>
+      </div>
+    </div>
   </div>
+  <ul class="list-unstyled" ng-repeat="item in results|orderBy:sort.column:sort.descending">
+    <li>
+      <div class="row">
+        <div class="col-lg-4">
+          <h3 ng-bind-html="item.title | highlight:query"></h3>
+          <h6>{{item.type | toTitleCase}}</h6>
+        </div>
+        <div class="col-lg-8">{{item.description}}</div>
+      </div>
+  	</li>
+  </ul>
 </div>

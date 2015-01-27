@@ -5,9 +5,6 @@ app.directive('typeahead', [function() {
 	  limit: 5,
   	// prefetch: '/search',
 	  remote: '/search/%QUERY',
-	  // datumTokenizer: function(datum) {
-	  //   return Bloodhound.tokenizers.whitespace(datum.val);
-	  // },
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
 	  queryTokenizer: Bloodhound.tokenizers.whitespace
 	});
@@ -19,7 +16,9 @@ app.directive('typeahead', [function() {
 
   return {
     restrict: 'C',
-    scope: { title: '@' },
+    scope: {
+    	title: '@'
+    },
     link: function(scope, element, attrs) {
     	element.typeahead({
     		hint: true,
@@ -27,7 +26,7 @@ app.directive('typeahead', [function() {
 			  highlight: true,
 			}, {
 				name: 'engine',
-				displayKey: 'val',
+				displayKey: 'title',
 			  source: engine.ttAdapter()
 			});
     }
