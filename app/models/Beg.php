@@ -4,6 +4,10 @@ use LaravelBook\Ardent\Ardent;
 
 class Beg extends Ardent {
 
+    use SoftDeletingTrait;
+
+    protected $dates = ['deleted_at'];
+
     public static function boot()
     {
         parent::boot();
@@ -40,14 +44,14 @@ class Beg extends Ardent {
      *
      * @var array
      */
-    protected $fillable = array();
+    protected $fillable = array('beggar', 'benefactor', 'private', 'title', 'description', 'categories', 'location', 'fulfilled_at', 'expires_at', 'created_at', 'updated_at', 'deleted_at');
 
     /**
      * The attributes protected from mass assignment.
      *
      * @var array
      */
-    protected $guarded = array();
+    protected $guarded = array('id');
 
     public function beggar()
     {
@@ -76,5 +80,11 @@ class Beg extends Ardent {
     // $table->softDeletes();
     // $table->foreign('beggar')->references('id')->on('accounts');
     // $table->foreign('benefactor')->references('id')->on('accounts');
+
+    // public function getDates()
+    // {
+    //     return array('fulfilled_at', 'expires_at', 'created_at', 'updated_at', 'deleted_at');
+    //     // created_at->toRfc2822String()
+    // }
 
 }
