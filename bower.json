@@ -17,6 +17,7 @@
     "angular-cache-buster": "~0.4",
     "typeahead.js": "~0.10",
     "angular-translate": "~2.5",
-    "angular-ui-utils": "~0.2"
+    "angular-ui-utils": "~0.2",
+    "angular-relative-date": "~0.2.0"
   }
 }

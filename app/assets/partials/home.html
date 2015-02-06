@@ -18,16 +18,18 @@
 <div class="row">
   <h2 class="col-lg-12">Latest Begs</h2>
   <div ng-controller="begsController">
-    <div ng-repeat="item in results|orderBy:created_at">
+    <div ng-repeat="item in results|orderBy:'created_at':true track by $index">
       <div class="col-lg-4 media">
         <div class="media-left">
           <a ng-href="/beg/{{item.id}}">
-            <img class="media-object thumbnail" src="http://lorempixel.com/100/100" />
+            <img class="media-object img-circle" style="border:1px solid rgb(204, 204, 204); box-shadow:rgba(0, 0, 0, 0.1) 0px 1px 1px 0px inset;" src="http://lorempixel.com/60/60/cats" />
           </a>
         </div>
         <div class="media-body">
           <h4 class="media-heading"><a ng-href="/beg/{{item.id}}">{{item.title}}</a></h4>
-          <h6>Posted: {{item.created_at}}</h6>
+          <h6>
+            Posted <time datetime="{{item.created_at}}">{{item.created_at | relativeDate}}</time> by <a ng-href="/profile/{{item.beggar.id}}">{{item.beggar.name}}</a> in<span ng-repeat="category in item.categories track by $index"><span data-ng-hide="$index == 0">,</span> <a ng-href="/results/{{category}}">{{category}}</a></span>
+          </h6>
           <p>{{item.description}}</p>
         </div>
       </div>

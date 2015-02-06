@@ -20,7 +20,10 @@ class BegController extends \BaseController {
 	 */
 	public function latest()
 	{
-		$results = DB::table('begs')->select('id', 'title', 'description', 'created_at')->orderBy('created_at', 'desc')->take('100')->get();
+		$results = DB::table('begs')->select('id', 'beggar', 'title', 'categories', 'description', 'created_at')->orderBy('created_at', 'desc')->take('100')->get();
+		for ($i = 0; $i < count($results); $i++) {
+			$results[$i]->beggar = Account::find($results[$i]->beggar);
+		}
 		return Response::json($results);
 	}
 

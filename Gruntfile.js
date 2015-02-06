@@ -36,7 +36,9 @@ module.exports = function (grunt) {
           'bower_modules/angular-touch/angular-touch.js',
           'bower_modules/angular-sanitize/angular-sanitize.js',
           'bower_modules/angular-mocks/angular-mocks.js',
-          'bower_modules/angular-ui-utils/ui-utils.js'
+          'bower_modules/angular-ui-utils/ui-utils.js',
+          'bower_modules/angular-relative-date/angular-relative-date.js',
+          'bower_modules/angular-translate/angular-translate.js'
         ],
         dest: 'public/assets/js/lib.js'
       },
