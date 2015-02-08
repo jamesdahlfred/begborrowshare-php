@@ -6,34 +6,25 @@ php:
   - 5.6
   - hhvm
 
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq ant
-
 install:
   # install php packages required for running a web server from drush on php 5.3
   - travis_retry composer install --no-interaction --prefer-source
 
   # install node.js packages required for various tasks (bower, grunt, etc)
-  - npm install --silent
+  - npm install
 
   # install bower libraries (AngularJS, jQuery, Bootstrap, etc)
-  - bower install --silent
+  - bower install
 
-  # ...install and build Google's closure compiler
-  - git clone --depth=50 --branch=master git://github.com/google/closure-compiler.git
-  - cd closure-compiler
-  - ant jar
+before_script:
+  # get Google's closure compiler for JavaScript
+  - wget http://dl.google.com/closure-compiler/compiler-latest.zip
+  - tar -xvzf compiler-latest.zip
 
 script:
-  - export CLOSURE_PATH=$(pwd)/closure-compiler
-
   # create new database
   - mysql -e 'create database begborrowshare'
 
-  # build and deploy...
+  # build, deploy, run all the tests
+  - export CLOSURE_PATH=$(pwd)
   - grunt
-
-  # start a web server on port 8080, run in the background; wait for initialization
-  - php artisan serve &
-  - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
