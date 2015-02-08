@@ -21,9 +21,8 @@ install:
   - bower install --silent
 
   # ...install and build Google's closure compiler
-  - mkdir closure-compiler
-  - cd closure-compiler
   - git clone --depth=50 --branch=master git://github.com/google/closure-compiler.git
+  - cd closure-compiler
   - ant jar
 
 script:
