@@ -6,11 +6,6 @@ php:
   - 5.6
   - hhvm
 
-mysql:
-  database: begborrowshare
-  username: root
-  encoding: utf8
-
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq ant
@@ -28,14 +23,8 @@ install:
   # ...install and build Google's closure compiler
   - mkdir closure-compiler
   - cd closure-compiler
-  - git clone --depth=50 --branch=master git@github.com:google/closure-compiler.git
+  - git clone --depth=50 --branch=master git://github.com/google/closure-compiler.git
   - ant jar
-
-before_script:
-  # update all the tools
-  - composer self-update
-  - npm update --silent
-  - bower update --silent
 
 script:
   - export CLOSURE_PATH=$(pwd)/closure-compiler
