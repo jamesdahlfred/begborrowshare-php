@@ -15,8 +15,8 @@ install:
   - bower install
 
   # get Google's closure compiler for JavaScript
-  - wget http://dl.google.com/closure-compiler/compiler-latest.zip -O ./compiler-latest.zip
-  - tar -xzvf ./compiler-latest.zip
+  - wget http://dl.google.com/closure-compiler/compiler-latest.zip
+  - unzip closure-compiler.zip -x COPYING README.md
 
 script:
   # create new database
