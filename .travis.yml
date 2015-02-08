@@ -11,8 +11,9 @@ mysql:
   username: root
   encoding: utf8
 
-env: 
-	- CLOSURE_PATH=$(pwd)/closure-compiler
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq ant
 
 install:
   # install php packages required for running a web server from drush on php 5.3
@@ -24,9 +25,6 @@ install:
   # install bower libraries (AngularJS, jQuery, Bootstrap, etc)
   - bower install --silent
 
-  # install ant so we can...
-  - sudo apt-get -u install ant
-
   # ...install and build Google's closure compiler
   - mkdir closure-compiler
   - cd closure-compiler
@@ -34,12 +32,14 @@ install:
   - ant jar
 
 before_script:
-	# update all the tools
+  # update all the tools
   - composer self-update
   - npm update --silent
   - bower update --silent
 
 script:
+  - export CLOSURE_PATH=$(pwd)/closure-compiler
+
   # create new database
   - mysql -e 'create database begborrowshare'
 
@@ -49,7 +49,3 @@ script:
   # start a web server on port 8080, run in the background; wait for initialization
   - php artisan serve &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
-
-notifications:
-    on_success: never
-    on_failure: always
