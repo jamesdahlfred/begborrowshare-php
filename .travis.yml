@@ -11,25 +11,36 @@ mysql:
   username: root
   encoding: utf8
 
+env: 
+	- CLOSURE_PATH=$(pwd)/closure-compiler
+
 install:
   # install php packages required for running a web server from drush on php 5.3
   - travis_retry composer install --no-interaction --prefer-source
 
-  # get node libraries
-  - npm install
+  # install node.js packages required for various tasks (bower, grunt, etc)
+  - npm install --silent
 
-  # get bower libraries
-  - bower install
+  # install bower libraries (AngularJS, jQuery, Bootstrap, etc)
+  - bower install --silent
+
+  # install ant so we can...
+  - sudo apt-get -u install ant
+
+  # ...install and build Google's closure compiler
+  - mkdir closure-compiler
+  - cd closure-compiler
+  - git clone --depth=50 --branch=master git@github.com:google/closure-compiler.git
+  - ant jar
 
 before_script:
+	# update all the tools
   - composer self-update
-
   - npm update --silent
-
   - bower update --silent
 
 script:
-  # create new site, stubbing sendmail path with true to prevent delivery errors and manually resolving drush path
+  # create new database
   - mysql -e 'create database begborrowshare'
 
   # build and deploy...
