@@ -25,4 +25,4 @@ script:
 
   # build, deploy, run all the tests
   - export CLOSURE_PATH=$PWD
-  - grunt
+  - grunt build phpunit
