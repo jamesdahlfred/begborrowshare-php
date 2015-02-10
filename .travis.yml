@@ -16,7 +16,8 @@ install:
 
   # get Google's closure compiler for JavaScript
   - wget http://dl.google.com/closure-compiler/compiler-latest.zip
-  - unzip compiler-latest.zip -x COPYING README.md
+  - mkdir -p build
+  - unzip compiler-latest.zip -d build -x COPYING README.md
 
 script:
   # create new database
